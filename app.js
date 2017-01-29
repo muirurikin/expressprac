@@ -9,6 +9,8 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
+app.set('port', process.env.PORT || 3000);
+
 app.use(express.static(__dirname + '/public'));
  
  app.get('/', function(req, res) {
@@ -30,3 +32,9 @@ app.use(function(err, req, res, next) {
     res.status(500);
     res. render('500');
 });
+
+//Connect to port
+
+ app.listen(app.get('port'), function() {
+     console.log('Express app running on http://localhost:' + app.get('port') + ' Press CTRL-C to terminate. ');
+ });
