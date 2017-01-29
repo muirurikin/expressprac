@@ -26,6 +26,11 @@ app.use(express.static(__dirname + '/public'));
      res.render('home');
  });
 
+app.use(function(req, res, next) {
+    console.log('Looking for URL : ' + req.url);
+    next();
+});
+
  app.get('/about', function(req, res) {
      res.render('about');
  });
