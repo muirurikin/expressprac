@@ -57,6 +57,32 @@ app.post('/file-upload/:year/:month', function(req, res) {
     });
 });
 
+var fs = require('fs');
+
+app.get('/readfile', function(req, res, next) {
+    fs.readFile('./public/random.txt', function(err, data) {
+        if(err) {
+            console.error(err);
+        }
+        res.send('The File : ' + data.toString());
+    });
+});
+
+app.get('/writefile', function(req, res, next) {
+    fs.writeFile('./public/randomfile.txt', 'Another random file just for testing', function(err) {
+        if(err) {
+            return console.error(err);
+        }
+    });
+    fs.readFile('./public/randomfile.txt', function(err, data) {
+        if(err) {
+            console.error(err);
+        }
+        res.send('The File : ' + data.toString());
+    });
+});
+
+
 app.use(function(req, res) {
     res.type('text/html');
     res.status(404);
