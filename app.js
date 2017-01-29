@@ -20,6 +20,13 @@ app.use(express.static(__dirname + '/public'));
  app.get('/about', function(req, res) {
      res.render('about');
  });
+ app.get('/contact', function(req, res) {
+     res.render('contact', { csrf: 'CSRF token here'});
+ });
+
+ app.get('/thankyou', function(req, res) {
+     res.render('thankyou');
+ });
 
 app.use(function(req, res) {
     res.type('text/html');
